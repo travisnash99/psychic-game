@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Phsycic Number Practice</title>
+
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+  <div class="jumbotron">
+
+    <h2 class="text-center">I'm thinking of a letter...</h2>
+
+    <div class="text-center">
+
+      <!-- Here we have our button for generating random numbers (#random-button) -->
+      <button id="random-button" class="btn btn-primary btn-lg">Start!</button>
+      
+    </div>
+
+    <div id="guess">You havn't guessed yet...</div>
+    <div id="wins">You havn't guessed the correct number yet...</div>
+
+  </div>
+
+  <!-- Here we have div called "random-number" where our random number will go -->
+
+  <script type="text/javascript">
+
+    $(document).ready(function() {
+
+      
+
+      var totalWins = 0;
+
+      $("#random-button").on("click", function(){
+
+      	var randomNum = (Math.floor(Math.random() *6 + 1));
+      	$("#random-number").html(randomNum);
+      	var randomGuess = randomNum.toString();
+      	console.log("randomGuess = " + randomGuess);
+
+      	var guessAmount = 0;
+      
+
+
+	document.onkeyup = function(event) {
+      	var userNum = event.key;
+      	var userGuess = userNum.toString();
+      	console.log("userGuess = " + userGuess);
+
+      	if ((userGuess === "1") || (userGuess === "2") || (userGuess === "3") || (userGuess === "4") || (userGuess === "5") || (userGuess === "6")) {
+
+      		guessAmount++;
+      		$("#guess").html("You've guessed " + guessAmount + " times...");
+
+      		if (userGuess === randomGuess) {
+      			alert("Congrats you guessed it!");
+      			totalWins++;
+      			$("#wins").html("Number of Wins: " + totalWins);
+      			$("#random-button").html("Try Again?");
+      		} else {
+      			alert("Sorry you didn't guess it.");
+      		};
+
+      	} else {
+      		alert("That's not a number 1-6.");
+      	}
+
+    };
+
+});
+
+
+
+
+
+
+      
+
+    });
+
+  </script>
+  
+</body>
+</html>
